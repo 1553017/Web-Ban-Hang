@@ -3,10 +3,10 @@ var router = express.Router();
 const { ensureAuthenticated } = require("../config/auth");
 var Product = require("../models/product");
 var Cart = require("../models/cart");
-var controller = require('../controllers/product_controller');
+var controller = require("../controllers/product_controller");
 
 /* GET home page. */
-router.get("/", controller.index );
+router.get("/", controller.index);
 
 router.get("/detail/:id", function (req, res) {
   var pid = req.params.id;
@@ -20,7 +20,6 @@ router.get("/detail/:id", function (req, res) {
   });
 });
 
-
 router.get("/add-to-cart/:id", function (req, res, next) {
   var pid = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : { item: {} });
@@ -29,8 +28,10 @@ router.get("/add-to-cart/:id", function (req, res, next) {
     cart.add(product, pid, product.imagePath);
     req.session.cart = cart;
     console.log(cart);
-    res.redirect("/detail/"+ pid);
+    res.redirect("/detail/" + pid);
   });
 });
+
+router.get("/products/search", controller.productSearch);
 
 module.exports = router;

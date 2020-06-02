@@ -32,19 +32,20 @@
   <body>
     <header id="header-main">
       <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
-        <div class="container">
+        <div class="container-fluid">
           <!-- Navbar content -->
           <div class="logo">
             <a href="/" class="navbar-brand">
               <img src="./images/logo.png" alt=""
             /></a>
           </div>
-          <form class="form-inline form-search mr-auto">
+          <form class="form-inline form-search mr-auto" action="/products/search" method="GET">
             <input
               class="key-word"
-              type="search"
-              placeholder="Search"
+              type="text"
+              placeholder="Tìm kiếm sản phẩm"
               aria-label="Search"
+              name="name"
             />
             <button class="btn btn-outline-success btn-search" type="submit">
               <span class="fas fa-search"></span>
@@ -52,19 +53,10 @@
           </form>
           <div class="contact-info">
             <ul>
-              <li>
-                <a href="/carts" class="btn-view-cart">
-                  <i class="fas fa-shopping-cart"></i> Giỏ hàng
-                  <span><%= session.cart ? session.cart.count : 0; %></span></a
-                >
-              </li>
-              <!-- <button class="navbar-toggler" type="button" datta-tongle="collapse" data-target="#navbarInfor">
-                <span class="navbar-toggler-icon"></span>
-              </button> -->
-              <% if (session.email == undefined) { %>
+              <% if (!session.passport) { %>
               <li class="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle dropdown"
+                  class="nav-link dropdown-toggle dropdown user-info"
                   href="#"
                   id="navbarDropdown"
                   role="button"
@@ -72,11 +64,17 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  Thông tin
+                  <b class="user-profile">Đăng nhập</b>
+                  <br />
+                  <small>Tài khoản</small>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a href="/users/register" class="dropdown-item" href="#">Đăng ký</a>
-                  <a href="/users/login" class="dropdown-item" href="#">Đăng nhập</a>
+                  <a href="/users/register" class="dropdown-item" href="#"
+                    >Đăng ký</a
+                  >
+                  <a href="/users/login" class="dropdown-item" href="#"
+                    >Đăng nhập</a
+                  >
                 </div>
               </li>
 
@@ -85,27 +83,43 @@
                 <a href="/users/logout" class="btn-logout">Logout</a>
               </li>
               <% } %>
+              <li>
+                <a href="/carts" class="btn-view-cart">
+                  <i class="fas fa-shopping-cart"></i> Giỏ hàng
+                  <span><%= session.cart ? session.cart.count : 0; %></span></a
+                >
+              </li>
             </ul>
           </div>
         </div>
       </nav>
       <div class="navbar-bottom bg-custom">
-        <div class="container">
-          <!-- link  -->
-          <ul class="menu">
-            <li class="nav-item">
+        <div class="container-fluid select-no-gutter">
+          <div class="menu-navbar col-md-4 col-lg-4" >
+            <button
+              class="navbar-toggler menu-dropdown-toggle"
+              type="button"
+              data-toggle="dropdown"
+              id="#navbarSupported"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class=""><i class="fas fa-bars fa-1x"></i></span> Danh mục
+              sản phẩm
+            </button>
+            <div class="dropdown-menu" id="navbarSupported">
+              <!-- link  -->
+
               <a class="nav-link" href="#">Tất cả sản phẩm</a>
-            </li>
-            <li class="nav-item">
+
               <a class="nav-link" href="#">Bán chạy</a>
-            </li>
-            <li class="nav-item">
+
               <a class="nav-link" href="#">Khuyến mãi</a>
-            </li>
-            <li class="nav-item">
+
               <a class="nav-link" href="#">Cẩm nang nhà bếp</a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </header>

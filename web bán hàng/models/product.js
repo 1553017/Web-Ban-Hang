@@ -14,5 +14,7 @@ var product = new Schema(
   },
   { collection: "Product" }
 );
+// product.index({name: 'text', 'profile.something': 'text'});
+// product.index({'$**': 'text'});
 
 module.exports = mongoose.model("Product", product);

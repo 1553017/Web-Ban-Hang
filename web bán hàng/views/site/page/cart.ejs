@@ -64,15 +64,8 @@
                     ><i></i>Tiếp tục mua hàng</a
                   >
                 </td>
-                <td colspan="2" class="hidden-xs"></td>
-                <td class="hidden-xs text-center">
-                  <strong>Tổng tiền: <%= session.cart.totalPrice %>đ</strong>
-                </td>
-                <td>
-                  <a href="" class="btn btn-success btn-block"
-                    >Thanh toán <i></i
-                  ></a>
-                </td>
+                <td colspan="3" class="hidden-xs"></td>
+               
               </tr>
             </tfoot>
           </table>
@@ -98,7 +91,7 @@
                 <tr class="order-total">
                   <th>Tổng:</th>
                   <td data-title="Tổng">
-                    <span><%= session.cart.totalPrice %>đ</span>
+                    <strong><%= session.cart.totalPrice %>đ</strong>
                   </td>
                 </tr>
               </tbody>
